@@ -526,6 +526,7 @@ if [ "$VLCROOT" = "" ]; then
             git checkout -B localBranch ${TESTEDHASH}
             git branch --set-upstream-to=origin/master localBranch
             git am ${ROOT_DIR}/libvlc/patches/*.patch
+            git apply ${ROOT_DIR}/libvlc/patches2/*.patch
             if [ $? -ne 0 ]; then
                 git am --abort
                 info "Applying the patches failed, aborting git-am"
@@ -537,6 +538,7 @@ if [ "$VLCROOT" = "" ]; then
             git fetch --all
             git reset --hard ${TESTEDHASH}
             git am ${ROOT_DIR}/libvlc/patches/*.patch
+            git apply ${ROOT_DIR}/libvlc/patches2/*.patch
             cd ..
         fi
     fi

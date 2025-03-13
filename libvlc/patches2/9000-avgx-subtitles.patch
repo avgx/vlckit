@@ -1,0 +1,17 @@
+diff --git a/modules/codec/subsdec.c b/modules/codec/subsdec.c
+index b695a088d2..e0db1336c6 100644
+--- a/modules/codec/subsdec.c
++++ b/modules/codec/subsdec.c
+@@ -457,7 +457,11 @@ static subpicture_t *ParseText( decoder_t *p_dec, block_t *p_block )
+     p_spu->b_ephemer  = (p_block->i_length == 0);
+ 
+     subtext_updater_sys_t *p_spu_sys = p_spu->updater.sys;
+-
++    if ( psz_subtitle != NULL )
++    {
++         msg_Dbg( p_dec, "subtitle: \"%s\"", psz_subtitle );
++    }
++    
+     int i_inline_align = -1;
+     p_spu_sys->region.p_segments = ParseSubtitles( &i_inline_align, psz_subtitle );
+     free( psz_subtitle );
